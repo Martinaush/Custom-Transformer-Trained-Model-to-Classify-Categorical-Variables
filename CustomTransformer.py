@@ -25,18 +25,8 @@ class CustomTransformer(BaseEstimator, TransformerMixin):
         
     def transform(self, X, y = None):
         
-        print("""################################################\n
-# Prepocessing................\n
-# Dealing with Infinite and NAs values\n
-################################################""")
-        
         # NAs to zero
-        print("There were %d NAs"%X.isna().sum().sum())
         X = X.fillna(0)
-        
-        # Checking infinite values
-        print("There were %d cells whose value were infinty"%np.isinf(X).values.sum(), end = "\n\n")
-
         # Converting Inf values to NAs
         X.replace([np.inf, -np.inf], np.nan, inplace=True)
 
